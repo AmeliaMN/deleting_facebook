@@ -22,3 +22,13 @@ To do:
 - Go through my google sheet again and make sure I have other modes of contact for the folks I want to stay in touch with
 - Actually delete the account!!
 - Clear cookies from my work computer, home computer, and phone
+
+
+## What am I going to use instead? 
+
+- I'm still going to be active on Twitter. I have a LinkedIn account. And, for right now I'm keeping Instagram. I know Instagram is owned by facebook, but it just feels like too much to delete IG right now. Baby steps!
+- I'm starting a personal newsletter to send updates to my friends and family. I'm using [TinyLetter](https://tinyletter.com/) for this.
+- To keep up on local events, I'm planning to pay closer attention to local arts publications, like the [City Pages](http://www.citypages.com/) in the Twin Cities. 
+- For events I'm hosting, I'll continue to use [Paperless Post](https://www.paperlesspost.com/) to invite folks (I haven't used FB for event invites in a couple of years).
+- Mostly, I'm going to be emailing, texting, calling, and talking face-to-face with my social network! 
+
