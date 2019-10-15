@@ -8,10 +8,12 @@ Here are the steps I've already taken:
 - [Parsed the HTML file of my friends list](FacebookFriends.Rmd). This HTML file is probably the least-useful way they could have provided the list of my friends, but with the help of [rvest](https://rvest.tidyverse.org/) and [SelectorGadget](https://selectorgadget.com/) I was able to find the right elements to get a data frame.
 - Made a google sheet of my entire friends list, as an accessible place for the data. 
 - Went through the entire list categorizing how I knew people and how much I want to stay in contact. (This took several days, as I had over 600 facebook friends!)
+- Exported my friends' birthdays from facebook. Facebook has changed their settings, so it's no longer easy to do this. But, [mobeigi has a python script](https://github.com/mobeigi/fb2cal) that will do it for you. As he warns, using this script made facebook temporarily suspend my account because of suspected security issues. I was able to get back in.
 
 In progress:
 
-- Trying to figure out how to export birthdays from facebook. It seems like you [need to use the Google API](https://github.com/mobeigi/fb2cal).
+- Parse birthday .ics file to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
+- Make sure the Apps and Websites I used facebook to log in to have alterate modes of access. I've already adjusted my Goodreads settings, but it doesn't look like the facebook data download comes with the list of apps, so I need to dig into my settings. 
 
 To do:
 
