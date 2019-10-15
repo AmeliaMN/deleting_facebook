@@ -20,3 +20,5 @@ To do:
 - Go through photos I'm tagged in and manually download pictures I want to keep
 - Order prints of favorite photos
 - Go through my google sheet again and make sure I have other modes of contact for the folks I want to stay in touch with
+- Actually delete the account!!
+- Clear cookies from my work computer, home computer, and phone
