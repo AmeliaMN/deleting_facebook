@@ -1,0 +1,30 @@
+---
+title: "Facebook friends"
+author: "Amelia McNamara"
+date: "10/8/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rvest)
+library(tibble)
+library(readr)
+library(here)
+
+here("../Documents/facebook-ameliamcnamara/friends")
+
+
+facebookfriend_html <- read_html(here("../Documents/facebook-ameliamcnamara/friends", "friends.html")
+)
+
+friends <- html_nodes(facebookfriend_html, "._2lel") %>%
+  html_text() %>%
+  as.tibble()
+
+## write_csv(friends, "facebookfriends.csv")
+```
+
