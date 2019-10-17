@@ -15,6 +15,8 @@ In progress:
 - Parse birthday .ics file to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
 - Make sure the Apps and Websites I used facebook to log in to have alterate modes of access. I've already adjusted my Goodreads settings, but it doesn't look like the facebook data download comes with the list of apps, so I need to dig into my settings. 
 
+- Major in progress: find an automated method to download photos I'm tagged in. There are methods available on the internet using Python (see, [gnmerritt](https://gnmerritt.net/deletefacebook/2018/04/03/fb-photos-of-me/), [jcontini](https://github.com/jcontini/fb-photo-downloader), and [KatyaRuth](https://github.com/KatyaRuth/photos-of-you)). None of these scripts work with the current version of facebook. I'm not a Python person, so it was hard for me to debug what was not working about them. At this point, I think one of the problems is that the URL where "photos of you" is kept has changed, but the more salient detail is that the photos are being kept inside an HTML comment now. In R, I've sorted out how to [parse out the comment text](FacebookFriends.Rmd) and turn it back into HTML. I don't know how to do this in Python. But, in R the way I simulate an HTML session is with rvest, and facebook doesn't accept that as a supported browser. So now I'm exploring RSelenium to do the browser stuff. 
+
 To do:
 
 - Go through photos I'm tagged in and manually download pictures I want to keep

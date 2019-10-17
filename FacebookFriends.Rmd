@@ -28,3 +28,32 @@ friends <- html_nodes(facebookfriend_html, "._2lel") %>%
 ## write_csv(friends, "facebookfriends.csv")
 ```
 
+## Tagged photos of me
+
+```{r}
+photos_of_me <- read_html(here("../Downloads", "view-source_https___www.facebook.com_amelia.mcnamara_photos_of.htm"))
+
+photo_urls <- photos_of_me %>%
+  html_nodes(xpath ='//comment()') %>%
+  html_text() %>%
+  paste(collapse = '') %>%
+  read_html() %>%
+  html_nodes(".uiMediaThumb") %>%
+  html_attrs() %>%
+  map_dfr(as.list)
+```
+
+```{r}
+s <- html_session("https://www.facebook.com/") 
+
+login <- s %>%
+  html_node("#login_form") 
+
+%>%
+  html_form()
+
+%>%
+  set_values(email='amelia.a.mcnamara@gmail.com', pass='') 
+  
+```
+
