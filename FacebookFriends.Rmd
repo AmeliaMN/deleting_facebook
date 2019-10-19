@@ -7,16 +7,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
 library(rvest)
 library(tibble)
 library(readr)
 library(here)
+```
 
+## Parsing Facebook friends from HTML (not recommended)
+
+Since I downloaded my data in HTML format rather than the much easier to use JSON format, I had to parse it. Here's my code for that:
+
+```{r}
 here("../Documents/facebook-ameliamcnamara/friends")
-
 
 facebookfriend_html <- read_html(here("../Documents/facebook-ameliamcnamara/friends", "friends.html")
 )
@@ -28,11 +30,22 @@ friends <- html_nodes(facebookfriend_html, "._2lel") %>%
 ## write_csv(friends, "facebookfriends.csv")
 ```
 
+If you are following along, you should download your data as JSON to avoid having to do this. 
+
 ## Tagged photos of me
 
+Another goal was to get tagged "photos of you" pictures backed up. Facebook really doesn't want you to do this. I've tried several approaches so far. 
+
+### rvest
+
+Initially, I just inspected a downloaded HTML source file
 ```{r}
 photos_of_me <- read_html(here("../Downloads", "view-source_https___www.facebook.com_amelia.mcnamara_photos_of.htm"))
+```
 
+Using `rvest`, I was able to get a little information out of the HTML. 
+
+```{r}
 photo_urls <- photos_of_me %>%
   html_nodes(xpath ='//comment()') %>%
   html_text() %>%
@@ -43,17 +56,91 @@ photo_urls <- photos_of_me %>%
   map_dfr(as.list)
 ```
 
+But, doing any sort of live login for facebook through `rvest` failed, because Facebook doesn't recognize the browser.
+
+### RSelenium
+
+Selenium is good because it drives a real browser. This is the approach the Python scripts for scraping tagged photos take. Those scripts don't work because Facebook has changed the HTML, but I figured I could debug the code better in R. 
+
+Since I don't know about Docker, I just used the `rsDriver` function to navigate. 
 ```{r}
-s <- html_session("https://www.facebook.com/") 
-
-login <- s %>%
-  html_node("#login_form") 
-
-%>%
-  html_form()
-
-%>%
-  set_values(email='amelia.a.mcnamara@gmail.com', pass='') 
-  
+library(RSelenium)
+rD <- rsDriver(port=444L, browser = "firefox")
+remDr <- rD$client
 ```
 
+I was able to get logged in pretty easily.
+
+```{r}
+remDr$navigate("https://www.facebook.com/")
+
+YourLogIN <- 'amelia.a.mcnamara@gmail.com'
+YourPassword <- "" #this is where your password goes
+
+remDr$findElement("id", "email")$sendKeysToElement(list(YourLogIN))
+remDr$findElement("id", "pass")$sendKeysToElement(list(YourPassword))
+remDr$findElement("id", "loginbutton")$clickElement()
+```
+
+But then, I got stuck in the navigation
+
+```{r}
+remDr$navigate("https://www.facebook.com/amelia.mcnamara/photos_of")
+```
+
+I think this is actually just my profile picture
+```{r}
+webElem <- remDr$findElement(using = "class", "uiMediaThumb") 
+webElem$clickElement()
+```
+
+This is perhaps a photo of me? But I couldn't get the src because it was in a comment
+```{r}
+img1 <- remDr$findElement(using = "id", "u_0_17")
+img1$getElementAttribute("src")
+```
+
+Tried just scrolling to the end of the page to grab the HTML
+```{r}
+webElem$sendKeysToElement(list(key = "end"))
+# page1 <- read_html(remDr$getPageSource()[[1]]) 
+page1 <- read_html(remDr$getPageSource()[[1]]) %>%
+  html_nodes(xpath ='//comment()')
+XML::getNodeSet(page1, path = '//comment()')
+remDr$findElement(using="class", "uiMediaThumb")
+```
+
+lots of attempts to right-click, all of them unsuccessful
+```{r}
+img1 <- remDr$findElement(using = "css selector", "img")
+img1 <- remDr$findElement(using = "id", "u_0_17")
+img1$clickElement
+remDr$mouseMoveToLocation(webElement = img1)
+remDr$click(2)
+remDr$sendKeysToActiveElement(
+list(key = 'down_arrow', key = 'down_arrow', key = 'enter')
+)
+img1$highlightElement()
+img1$getElementAttribute('value')
+img1$getElementAttribute('innerHTML')
+remDr$mouseMoveToLocation(x = 500, y = 500)
+remDr$click(2)
+remDr$sendKeysToActiveElement(
+list(key = 'down_arrow', key = 'down_arrow', key = 'enter')
+)
+remDr$buttondown(buttonId = 2)
+remDr$click(buttonId = 2)
+```
+
+To finish up, you need to close the session.
+```{r}
+remDr$close()
+```
+
+## splashr
+Since I can't figure out how to right-click in RSelenium, and I haven't been able to successfully download the HTML source to parse it differently, I decided it was probably time to try Docker. This will allow me to use splashr, which is perhaps a more appropriate package. 
+
+
+```{r}
+
+```
