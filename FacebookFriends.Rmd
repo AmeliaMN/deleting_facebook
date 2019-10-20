@@ -123,11 +123,8 @@ for(i in 1:1037){
 ```
 
 
-
-
 To finish up, you need to close the session.
 ```{r}
 remDr$close()
 ```
-
 
