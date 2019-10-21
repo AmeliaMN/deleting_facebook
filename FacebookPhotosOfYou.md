@@ -63,6 +63,8 @@ for (i in 1:5000) {
 }
 ```
 
+\[Edit: I think a `while` statement that would work would compare each new src to the first one, and stop when those matched.\]
+
 Then, I made a tibble with those urls, and made sure to just grab the distinct ones. Then I made up some names for the files I was about to download. I saved this dataframe to an external file so I wouldn't lose those valuable URLs!
 
 ``` r
