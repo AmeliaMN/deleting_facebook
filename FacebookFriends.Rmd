@@ -7,16 +7,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
 library(rvest)
 library(tibble)
 library(readr)
 library(here)
+```
 
+## Parsing Facebook friends from HTML (not recommended)
+
+Since I downloaded my data in HTML format rather than the much easier to use JSON format, I had to parse it. Here's my code for that:
+
+```{r}
 here("../Documents/facebook-ameliamcnamara/friends")
-
 
 facebookfriend_html <- read_html(here("../Documents/facebook-ameliamcnamara/friends", "friends.html")
 )
@@ -28,33 +30,102 @@ friends <- html_nodes(facebookfriend_html, "._2lel") %>%
 ## write_csv(friends, "facebookfriends.csv")
 ```
 
+If you are following along, you should download your data as JSON to avoid having to do this. 
+
 ## Tagged photos of me
 
-```{r}
-photos_of_me <- read_html(here("../Downloads", "view-source_https___www.facebook.com_amelia.mcnamara_photos_of.htm"))
+Another goal was to get tagged "photos of you" pictures backed up. Facebook really doesn't want you to do this. I've tried several approaches so far. (Some that failed are detailed in UselessScraps.Rmd)
 
-photo_urls <- photos_of_me %>%
-  html_nodes(xpath ='//comment()') %>%
-  html_text() %>%
-  paste(collapse = '') %>%
-  read_html() %>%
-  html_nodes(".uiMediaThumb") %>%
-  html_attrs() %>%
-  map_dfr(as.list)
+### RSelenium
+
+Selenium is good because it drives a real browser. This is the approach the Python scripts for scraping tagged photos take. Those scripts don't work because Facebook has changed the HTML, but I figured I could debug the code better in R. 
+
+Since I don't know about Docker, I just used the `rsDriver` function to navigate. 
+```{r}
+library(RSelenium)
+rD <- rsDriver(port=444L, browser = "firefox")
+remDr <- rD$client
+```
+
+I was able to get logged in pretty easily.
+
+```{r}
+remDr$navigate("https://www.facebook.com/")
+
+YourLogIN <- 'amelia.a.mcnamara@gmail.com'
+YourPassword <- "" #this is where your password goes
+
+remDr$findElement("id", "email")$sendKeysToElement(list(YourLogIN))
+remDr$findElement("id", "pass")$sendKeysToElement(list(YourPassword))
+remDr$findElement("id", "loginbutton")$clickElement()
+```
+
+
+
+```{r}
+remDr$navigate("https://www.facebook.com/amelia.mcnamara/photos_of")
+```
+
+Click on the first tagged photo of me
+```{r}
+webElem <- remDr$findElement(using = "class", "uiMediaThumb") 
+webElem$clickElement()
+```
+
+Working up to this point!! 
+
+Somehow I got trapped in a loop before. Let's go back.
+
+```{r}
+remDr$navigate("https://www.facebook.com/photo.php?fbid=1068858213208156&set=t.21423814&type=3&theater")
+```
+
+The rightcick stuff does not work. But, maybe we can grab the src. 
+```{r}
+srcs <- c()
+for(i in 1:500){
+  img1 <- remDr$findElement(using = "class", "spotlight")
+  srcs[i] <- img1$getElementAttribute("src")
+  img1$clickElement()
+}
+
 ```
 
 ```{r}
-s <- html_session("https://www.facebook.com/") 
+myFun_2 <- function(inlist) {
+  x <- as.data.frame(do.call(rbind, inlist))
+  x[] <- lapply(x, unlist)
+  x
+}
 
-login <- s %>%
-  html_node("#login_form") 
+src_df2 <- myFun_2(srcs)
+src_df2 <- src_df2 %>%
+  mutate(url = as.character(V1))
+src_df2 <- src_df2 %>%
+  mutate(filename = paste0("img/FB_download", row_number(), ".jpg"))
 
-%>%
-  html_form()
+src_df2 <- src_df2 %>%
+  distinct(url)
 
-%>%
-  set_values(email='amelia.a.mcnamara@gmail.com', pass='') 
-  
+src_df <- src_df %>%
+  bind_rows(src_df2)
+
+src_df <- src_df %>%
+  distinct(url)
+
+write_csv(src_df, "fb_images.csv")
+```
+
+```{r}
+for(i in 1:1037){
+  curl_download(src_df$url[i], src_df$filename[i])
+}
+```
+
+
+To finish up, you need to close the session.
+```{r}
+remDr$close()
 ```
 
 ```{r}

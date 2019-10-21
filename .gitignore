@@ -2,3 +2,6 @@
 *.html
 *.csv
 .Rproj.user
+/img/*
+*.jpeg
+*.jpg
