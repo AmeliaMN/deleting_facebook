@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a place to dump stuff that doesn't work, but I don't want to fully lose. 
+This is a place to dump stuff that doesn't work, but I don't want to fully lose in case I needed to come back to it. 
 
 ### rvest
 
@@ -75,7 +75,17 @@ img1 <- webElem$findElement(using = "class", "spotlight")
 img1$getElementAttribute("src")
 ```
 
+```{r}
+myFun_2 <- function(inlist) {
+  x <- as.data.frame(do.call(rbind, inlist))
+  x[] <- lapply(x, unlist)
+  x
+}
 
+src_df2 <- myFun_2(srcs)
+src_df2 <- src_df2 %>%
+  mutate(url = as.character(V1))
+```
 
 
 
