@@ -57,3 +57,9 @@ login <- s %>%
   
 ```
 
+```{r}
+library(RSelenium)
+rsDriver(browser = "chrome")
+# not currently working, seems like I need to learn more about selenium
+```
+
