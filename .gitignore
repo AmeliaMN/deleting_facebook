@@ -1,7 +1,11 @@
 .DS_Store
 *.html
+!FacebookFriends.html
+!FacebookPhotosOfYou.html
+!UselessScraps.html
 *.csv
 .Rproj.user
 /img/*
 *.jpeg
 *.jpg
+

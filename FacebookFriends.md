@@ -1,21 +1,12 @@
----
-title: "Parsing Facebook friends HTML"
-output: github_document
----
+Parsing Facebook friends HTML
+================
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-library(rvest)
-library(tibble)
-library(readr)
-library(here)
-```
-
-## Parsing Facebook friends from HTML (not recommended)
+Parsing Facebook friends from HTML (not recommended)
+----------------------------------------------------
 
 Since I downloaded my data in HTML format rather than the much easier to use JSON format, I had to parse it. Here's my code for that:
 
-```{r}
+``` r
 here("../Documents/facebook-ameliamcnamara/friends")
 
 facebookfriend_html <- read_html(here("../Documents/facebook-ameliamcnamara/friends", "friends.html"))
@@ -27,5 +18,4 @@ friends <- html_nodes(facebookfriend_html, "._2lel") %>%
 ## write_csv(friends, "facebookfriends.csv")
 ```
 
-If you are following along, you should download your data as JSON to avoid having to do this. 
-
+If you are following along, you should download your data as JSON to avoid having to do this.
