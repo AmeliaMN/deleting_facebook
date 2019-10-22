@@ -28,7 +28,7 @@ I was able to get logged in pretty easily.
 ```{r}
 remDr$navigate("https://www.facebook.com/")
 
-YourLogIN <- "amelia.a.mcnamara@gmail.com"
+YourLogIN <- ""
 YourPassword <- "" # this is where your password goes
 
 remDr$findElement("id", "email")$sendKeysToElement(list(YourLogIN))
