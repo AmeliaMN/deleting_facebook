@@ -12,17 +12,17 @@ Here are the steps I've already taken:
 - [Downloaded all the photos I am tagged in](FacebookPhotosOfYou.md).  There were methods available on the internet using Python (see, [gnmerritt](https://gnmerritt.net/deletefacebook/2018/04/03/fb-photos-of-me/), [jcontini](https://github.com/jcontini/fb-photo-downloader), and [KatyaRuth](https://github.com/KatyaRuth/photos-of-you)), but none of them worked with the current version of facebook (I think Facebook likely changed their API to make it more difficult to scrape this stuff). I'm not a Python person, so it was hard for me to debug what was not working about them. I wrote [my own code using RSelenium](FacebookPhotosOfYou.md) to do the browser stuff. It is highly inefficient, but it works!  
 - Made sure the Apps and Websites I used facebook to log in to have alterate modes of access. 
 - Go through my google sheet again and make sure I have other modes of contact for the folks I want to stay in touch with. [Didn't do a great job of this, but it's time to let go!]
+- Actually deleted my account!!
+- 
 
 In progress:
 
 - Parse birthday .ics file to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
 - Order prints of favorite photos
-
-
-To do:
-
-- Actually delete the account!!
 - Clear cookies from my work computer, home computer, and phone
+
+
+
 
 
 ## What am I going to use instead? 
