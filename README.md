@@ -1,7 +1,6 @@
-# deleting_facebook
-Documentation of what I'm doing to prepare to delete my Facebook account. 
+# Documentation of what I did to prepare to delete my Facebook account. 
 
-Here are the steps I've already taken:
+Here are the steps I took:
 
 - [Downloaded my facebook data](https://www.facebook.com/help/1701730696756992/?helpref=hc_fnav). This comes with a lot of data. Most importantly, all the photos I had uploaded to facebook over the years, organized by album, and a list of all my facebook friends. Initially, I unchecked some boxes in the facebook data, so I hadn't downloaded the list of Apps and Websites I used facebook to log in with. I eventually went back and grabbed those. 
 - [Posted on facebook](LeavingFacebook.txt) about my plan, announcing I'm starting a small (personal) newsletter, and giving a two-week countdown to get my affairs in order.
@@ -12,18 +11,14 @@ Here are the steps I've already taken:
 - [Downloaded all the photos I am tagged in](FacebookPhotosOfYou.md).  There were methods available on the internet using Python (see, [gnmerritt](https://gnmerritt.net/deletefacebook/2018/04/03/fb-photos-of-me/), [jcontini](https://github.com/jcontini/fb-photo-downloader), and [KatyaRuth](https://github.com/KatyaRuth/photos-of-you)), but none of them worked with the current version of facebook (I think Facebook likely changed their API to make it more difficult to scrape this stuff). I'm not a Python person, so it was hard for me to debug what was not working about them. I wrote [my own code using RSelenium](FacebookPhotosOfYou.md) to do the browser stuff. It is highly inefficient, but it works!  
 - Made sure the Apps and Websites I used facebook to log in to have alterate modes of access. 
 - Go through my google sheet again and make sure I have other modes of contact for the folks I want to stay in touch with. [Didn't do a great job of this, but it's time to let go!]
-- Actually deleted my account!!
-- 
+- **Actually deleted my account!!**
+- [Parsed the birthday .ics file](parsing_birthdays.md) to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
+- Ordered prints of favorite photos from Spoonflower, organized them into a photo album.
+- Cleared cookies from my work computer, home computer, and phone
 
 In progress:
 
-- Parse birthday .ics file to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
-- Order prints of favorite photos
-- Clear cookies from my work computer, home computer, and phone
-
-
-
-
+- Write blog post about process
 
 ## What am I going to use instead? 
 
