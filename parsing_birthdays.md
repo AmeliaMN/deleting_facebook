@@ -1,6 +1,14 @@
 Parsing friend’s birthdays
 ================
 
+``` r
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(calendar)
+library(here)
+library(dplyr)
+library(readr)
+```
+
 There is a package called `calendar`, which is supposed to parse .ics
 files. However, it doesn’t work right out of the box on a
 facebook-generated .ics file.

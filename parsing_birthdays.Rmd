@@ -3,7 +3,7 @@ title: "Parsing friend's birthdays"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(calendar)
 library(here)
