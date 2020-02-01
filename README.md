@@ -1,5 +1,7 @@
 # Documentation of what I did to prepare to delete my Facebook account. 
 
+If you want a more narrative view of this whole thing, check out [the blogpost I wrote about the whole process](https://www.amelia.mn/blog/misc/2019/12/29/Deleting-Facebook.html). Otherwise, see the bullets below. 
+
 Here are the steps I took:
 
 - [Downloaded my facebook data](https://www.facebook.com/help/1701730696756992/?helpref=hc_fnav). This comes with a lot of data. Most importantly, all the photos I had uploaded to facebook over the years, organized by album, and a list of all my facebook friends. Initially, I unchecked some boxes in the facebook data, so I hadn't downloaded the list of Apps and Websites I used facebook to log in with. I eventually went back and grabbed those. 
