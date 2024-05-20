@@ -1,6 +1,6 @@
 # Documentation of what I did to prepare to delete my Facebook account. 
 
-If you want a more narrative view of this whole thing, check out [the blogpost I wrote about the whole process](https://www.amelia.mn/blog/misc/2019/12/29/Deleting-Facebook.html). Otherwise, see the bullets below. 
+If you want a more narrative view of this whole thing, check out [the blogpost I wrote about the whole process](https://www.amelia.mn/blog/2019-12-29-Deleting-Facebook/). Otherwise, see the bullets below. 
 
 Here are the steps I took:
 
@@ -17,7 +17,7 @@ Here are the steps I took:
 - [Parsed the birthday .ics file](parsing_birthdays.md) to save just the birthdays of people I want to stay in contact with. (I don't need 600+ birthday reminders on my calendar!)
 - Ordered prints of favorite photos from Spoonflower, organized them into a photo album.
 - Cleared cookies from my work computer, home computer, and phone
-- Wrote [a blog post](https://www.amelia.mn/blog/misc/2019/12/29/Deleting-Facebook.html) about my entire process
+- Wrote [a blog post](https://www.amelia.mn/blog/2019-12-29-Deleting-Facebook/) about my entire process
 
 
 ## What am I going to use instead? 
